@@ -31,4 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+  const buttons = document.querySelectorAll('.accordion-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+
+      // Close other open accordions
+      document.querySelectorAll('.accordion-content').forEach(section => {
+        if (section !== content) {
+          section.classList.remove('open');
+          section.style.maxHeight = null;
+        }
+      });
+
+      // Toggle current
+      content.classList.toggle('open');
+      content.style.maxHeight = content.classList.contains('open')
+        ? content.scrollHeight + "px"
+        : null;
+    });
+  });
+
+
   
